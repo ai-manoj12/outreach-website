@@ -16,8 +16,13 @@
     background-color: #fff;
 }
 
+img {
+    width: 200px;
+    height: auto;
+}
+
 html {
-    background-color: #F28585;
+    background-color: #B7E5B4;
 }
 
 h1 {
@@ -34,10 +39,10 @@ h1 {
     align-items: center;
     justify-content: center;
     /* Adding background color */
-    background-color: #B7E5B4;
+    background-color: #F28585;
     color: white;
     padding: 20px; /* Adding some padding for better visibility */
-    margin: 20px; /* Adding margin for spacing */
+    margin: 35px; /* Adding margin for spacing */
     border-radius: 15px;
 }
 
