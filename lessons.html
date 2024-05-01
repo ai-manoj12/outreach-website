@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons - Coming Soon</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #fff8da; /* Soft cream background */
+            margin: 0;
+            padding-top: 60px; /* Added padding to push the content down below the fixed header */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: #333333;
+            font-size: 32px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <!-- The main content will start here, pushed down by the top padding on the body -->
+    <h1>Lessons Coming Soon!</h1>
+    <!-- More content can be added here -->
+
+    <script>
+        // Load the navigation bar using JavaScript
+        // need to change depending on if the user logged in or not!!!!
+        const loggedIn = false;
+
+        const navFile = loggedIn ? 'after_header.html' : 'before_header.html';
+
+        fetch(navFile)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching navigation bar:', error);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SPARK</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #fff8da; /* Soft cream background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+
+        .main-content {
+            margin-top: 60px; /* Added space for the fixed nav */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 72px; /* Large font size for SPARK */
+            color: #333333;
+            margin: 0;
+        }
+        h2 {
+            font-size: 25px; /* Large font size for SPARK */
+            color: #333333;
+            margin: 0;
+        }
+        .start-button {
+            background-color: #ffa447; /* Light orange */
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 24px; /* Larger font size for the button */
+            margin-top: 30px; /* Space from the SPARK text */
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="nav-placeholder"></div>
+
+
+    <div class="main-content">
+        <h1>SPARK</h1>
+        <h2>by WECE</h2>
+        <button class="start-button" onclick="window.location.href='lessons.html';">Start</button>
+    </div>
+
+    <script>
+        // Load the navigation bar using JavaScript
+        // need to change depending on if the user logged in or not!!!!
+        const loggedIn = false;
+
+        const navFile = loggedIn ? 'after_header.html' : 'before_header.html';
+
+        fetch(navFile)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching navigation bar:', error);
+            });
+    </script>
+
+</body>
+</html>
