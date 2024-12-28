@@ -79,3 +79,67 @@ width: 100%; /* Adjust the width as needed */
 margin-top: 10px; /* Adjust the margin-top value as needed */
 text-align: center; /* Center the text */
 }
+
+nav {
+  background-color: #f28585; /* Soft pink */
+  width: 100%;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-align: center;
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensures it stays on top of other content */
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* Items distributed evenly */
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+nav a:hover {
+  background-color: #ffbdbd;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.right-links {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  margin-right: 30px; /* Move the links a little to the left */
+}
+
+.spark-link {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px; /* Increase font size */
+  margin-left: 10px;
+  font-weight: bold;
+}
