@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,11 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            background-color: #fff8da; /* Soft cream background */
+            background-color: #fff8da;
+            /* Soft cream background */
             margin: 0;
-            padding-top: 60px; /* Added padding to push the content down below the fixed header */
+            padding-top: 60px;
+            /* Added padding to push the content down below the fixed header */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -24,38 +27,52 @@
             font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
         }
+
         h2 {
             color: #f28585;
             font-size: 24px;
             text-align: center;
             margin-top: 20px;
         }
+
         h3 {
             color: #525050;
             font-size: 15px;
-            
+
         }
+
         .divider-container {
             width: 100%;
-            padding: 0 20px; /* Add padding to the left and right */
+            padding: 0 20px;
+            /* Add padding to the left and right */
             box-sizing: border-box;
         }
+
         .divider {
             width: 100%;
-            border-bottom: 1px solid #ffa447; /* Black bottom border */
-            margin-top: 20px; /* Adjust the margin-top value as needed */
-            margin-bottom: 20px; /* Adjust the margin-bottom value as needed */
-            
+            border-bottom: 1px solid #ffa447;
+            /* Black bottom border */
+            margin-top: 20px;
+            /* Adjust the margin-top value as needed */
+            margin-bottom: 20px;
+            /* Adjust the margin-bottom value as needed */
+
         }
 
         .box-container {
-            background-color: rgba(255, 255, 255, 0.6); /* Transparent white box */
+            background-color: rgba(255, 255, 255, 0.6);
+            /* Transparent white box */
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Add shadow */
-            width: 80%; /* Adjust the width as needed */
-            max-width: 800px; /* Set maximum width */
-            margin-top: 20px; /* Adjust the margin-top value as needed */
-            text-align: center; /* Center the content */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            /* Add shadow */
+            width: 80%;
+            /* Adjust the width as needed */
+            max-width: 800px;
+            /* Set maximum width */
+            margin-top: 20px;
+            /* Adjust the margin-top value as needed */
+            text-align: center;
+            /* Center the content */
         }
 
         .picture-container {
@@ -65,32 +82,109 @@
         }
 
         .picture {
-            width: 20%; /* Adjust the width as needed */
+            width: 20%;
+            /* Adjust the width as needed */
             margin: 0 8%;
-            border-radius: 8px; /* Add border radius */
-            overflow: hidden; /* Hide overflowing content */
+            border-radius: 8px;
+            /* Add border radius */
+            overflow: hidden;
+            /* Hide overflowing content */
         }
 
         .picture img {
-            width: 100%; /* Make the image fill its container */
-            display: block; /* Remove any default image margins */
+            width: 100%;
+            /* Make the image fill its container */
+            display: block;
+            /* Remove any default image margins */
         }
 
         .picture img {
-            width: 100%; /* Make the image fill its container */
-            display: block; /* Remove any default image margins */
+            width: 100%;
+            /* Make the image fill its container */
+            display: block;
+            /* Remove any default image margins */
         }
 
         .description {
-        width: 100%; /* Adjust the width as needed */
-        margin-top: 10px; /* Adjust the margin-top value as needed */
-        text-align: center; /* Center the text */
-    }
+            width: 100%;
+            /* Adjust the width as needed */
+            margin-top: 10px;
+            /* Adjust the margin-top value as needed */
+            text-align: center;
+            /* Center the text */
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 10px;
+            -webkit-overflow-scrolling: touch;
+            border-style: solid;
+            border-width: 10px;
+            border-radius: 10px;
+            border-color: #f3dcfe;
+        }
 
 
+        .gallery::-webkit-scrollbar {
+            display: none;
+        }
 
+        .slide {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .slide img:hover {
+            transform: scale(1.1);
+            cursor: zoom-in;
+        }
+
+        .shift-down {
+            object-position: center 40%;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
     </style>
 </head>
+
 <body>
     <div id="nav-placeholder"></div>
     <!-- The main content will start here, pushed down by the top padding on the body -->
@@ -101,15 +195,47 @@
     <!-- More content can be added here -->
     <h2>
         WECE<br>
-        Women in Electrical and Computer Engineering 
+        Women in Electrical and Computer Engineering
     </h2>
+
 
     <div class="box-container">
         <h3>
-            a student organization at the University of Illinois at Urbana-Champaign dedicated to supporting women within the Illinois ECE department. We welcome members of all genders to be active in the group, and we strive to build communities amongst ourselves by hosting social, technical, outreach, and professional events!
-    
+            A student organization at the University of Illinois at Urbana-Champaign dedicated to supporting women
+            within the Illinois ECE department. We welcome members of all genders to be active in the group, and we
+            strive to build communities amongst ourselves by hosting social, technical, outreach, and professional
+            events!
+
         </h3>
     </div>
+
+    <div class="divider-container">
+        <div class="divider"></div>
+    </div>
+
+    <div class="gallery-wrapper">
+        <h2>
+            GALLERY<br>
+        </h2>
+        <div class="gallery">
+            <div class="slide"><img src="image1.jpg" alt="Gallery image 1"></div>
+            <div class="slide"><img src="image2.jpg" alt="Gallery image 2"></div>
+            <div class="slide"><img src="image3.jpg" alt="Gallery image 3"></div>
+            <div class="slide"><img src="image4.jpg" alt="Gallery image 4"></div>
+            <div class="slide"><img src="image5.jpg" alt="Gallery image 5"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 6"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 7"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 8"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 9"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 10"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 11"></div>
+            <div class="slide"><img src="blank_image.jpeg" alt="Gallery image 12"></div>
+        </div>
+
+        <button class="nav-btn prev" onclick="scrollGallery(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="scrollGallery(1)">&#10095;</button>
+    </div>
+    <script src="script.js"></script>
 
     <div class="divider-container">
         <div class="divider"></div>
@@ -121,8 +247,13 @@
 
     <div class="box-container">
         <h3>
-            WECE Spark began as an idea within the UIUC WECE Outreach committee and has grown over the past two years into a full-fledged youth-centered website to introduce young girls around the world to Computer and Electrical Engineering. Spark allows WECE to help educate future engineers all over the country in parallel to our Outreach committee hosting educational talks and events within the Champaign-Urbana community. Spark is a continuously growing website based entirely on student contribution! Come help WECE and help fan the Spark for young engineers!
-    
+            WECE Spark began as an idea within the UIUC WECE Outreach committee and has grown over the past couple years
+            into a full-fledged youth-centered website to introduce young girls around the world to Computer and
+            Electrical Engineering. Spark allows WECE to help educate future engineers all over the country in parallel
+            to our Outreach committee hosting educational talks and events within the Champaign-Urbana community. Spark
+            is a continuously growing website based entirely on student contribution! Come help WECE and help fan the
+            Spark for young engineers!
+
         </h3>
     </div>
 
@@ -138,51 +269,51 @@
     <div class="picture-container">
         <!-- Picture 1 -->
         <div class="picture">
-            <img src="image1.jpg" alt="Matilde Figueroa-Carrillo">
-            <div class="description">Matilde Figueroa-Carrillo <br>
-                Front End Dev <br>
-                Junior (Electrical Engineering with minors in Materials Science and Engineering and Semiconductor)
-                </div>
+            <img src="image1.jpg" alt="Medha Muskula">
+            <div class="description">Medha Muskula <br>
+                Outreach Committee Head <br>
+                Junior, Computer Engineering
+            </div>
         </div>
         <!-- Picture 2 -->
         <div class="picture">
-            <img src="image3.jpg" alt="Jenny Kim">
-            <div class="description">Jenny Kim <br> 
-                WECE Outreach Technical Chair <br>
-                Sophomore <br>
-                (Stat + CS)
-                </div>
+            <img src="image3.jpg" alt="Meiyan Zhu">
+            <div class="description">Meiyan Zhu <br>
+                WECE Outreach Activities Chair <br>
+                Freshman <br>
+                Computer Engineering
+            </div>
         </div>
         <!-- Picture 3 -->
         <div class="picture">
-            <img src="image5.jpg" alt="Aishwarya Manoj">
-            <div class="description">Aishwarya Manoj <br>
-                WECE Outreach Technical Chair <br>
-                Sophomore <br>
-                (Computer Engineering)
-                </div>
+            <img src="image5.jpg" alt="Parthavi Chauhan">
+            <div class="description">Parthavi Chauhan <br>
+                WECE Outreach Admin Chair <br>
+                Freshman <br>
+                Computer Engineering
+            </div>
         </div>
     </div>
 
     <div class="picture-container">
         <!-- Picture 1 -->
         <div class="picture">
-            <img src="image2.jpg" alt="Ian Watson">
-            <div class="description">Ian Watson <br>
-                Front End Dev <br>
-                Junior <br>
-                (Computer Engineering with minor in Math)
-                
-                </div>
+            <img src="image2.jpg" alt="Reyna Alam">
+            <div class="description">Reyna Alam <br>
+                WECE Outreach Website Chair <br>
+                Freshman <br>
+                Electrical Engineering
+
+            </div>
         </div>
         <!-- Picture 2 -->
         <div class="picture">
-            <img src="image4.jpg" alt="Sarayu Suresh">
-            <div class="description">Sarayu Suresh <br>
-                Front End Dev <br>
-                Freshman <br>
-                (Computer Engineering minors in Math and Business)
-                </div>
+            <img src="image4.jpg" alt="Julia Tran">
+            <div class="description">Julia Tran <br>
+                WECE Outreach Website Chair <br>
+                Junior <br>
+                Electrical Engineering
+            </div>
         </div>
         <!-- Picture 3 -->
         <div class="picture">
@@ -191,7 +322,7 @@
                 Front End Dev <br>
                 Freshman <br>
                 (Computer Engineering)
-                </div>
+            </div>
         </div>
     </div>
 
@@ -214,4 +345,5 @@
             });
     </script>
 </body>
+
 </html>
