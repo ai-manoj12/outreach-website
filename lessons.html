@@ -1,52 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lessons - Coming Soon</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #fff8da; /* Soft cream background */
-            margin: 0;
-            padding-top: 60px; /* Added padding to push the content down below the fixed header */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lessons - Coming Soon</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #fff8da;
+      /* Soft cream background */
+      margin: 0;
+      padding-top: 60px;
+      /* Added padding to push the content down below the fixed header */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
 
-        h1 {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-            color: #333333;
-            font-size: 32px;
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
+    h1 {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      color: #333333;
+      font-size: 32px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* ------- 5x5 grid ------- */
+    .grid-3x3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    /* lesson card (picture container) */
+    .lesson-card {
+      background-color: white;
+      border-radius: 32px;
+      box-shadow: 0 15px 25px -10px rgba(0, 50, 70, 0.2);
+      aspect-ratio: 1 / 1;
+      /* square cards */
+      overflow: hidden;
+      /* keeps hover details inside */
+      position: relative;
+      cursor: pointer;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+      text-decoration: none;
+      /* for link (if we use <a>) */
+      display: block;
+      /* makes whole card clickable? we'll put image + overlay */
+    }
+
+    .lesson-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 30px -8px #00334960;
+    }
+
+    /* image fills the card */
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* covers square nicely */
+      display: block;
+      transition: filter 0.25s;
+    }
+
+    /* overlay details (hidden by default, appear on hover) */
+    .hover-details {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 20, 30, 0.82);
+      /* dark overlay so white text pops */
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      /* text not clickable – the whole <a> handles click */
+      border-radius: 32px;
+    }
+
+    .lesson-card:hover .hover-details {
+      opacity: 1;
+    }
+
+    /* optional: dim image a tiny bit on hover for extra contrast */
+    .lesson-card:hover .card-image {
+      filter: brightness(0.9) blur(1px);
+    }
+
+    /* text styling inside hover */
+    .hover-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 2px 5px black;
+    }
+
+    .hover-desc {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
+      opacity: 0.9;
+      max-width: 90%;
+    }
+
+    .hover-meta {
+      font-size: 0.8rem;
+      background: #ffffff30;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-top: 0.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* tiny label for the "press / click" hint */
+    .click-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      background: rgba(255, 215, 0, 0.9);
+      color: #1a3a4a;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      box-shadow: 0 2px 8px black;
+      z-index: 5;
+      pointer-events: none;
+      /* hint not clickable */
+    }
+
+    /* footer */
+    .footer-note {
+      margin-top: 2.8rem;
+      color: #37647c;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    /* simple responsiveness: fewer columns if too small? keep 5 but shrink gap */
+    @media (max-width: 700px) {
+      .grid-3x3 {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .grid-3x3 {
+        grid-template-columns: repeat(2, 1fr);
+        /* tablets: 2 columns */
+        gap: 0.8rem;
+      }
+
+      .hover-title {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .grid-3x3 {
+        grid-template-columns: 1fr;
+        /* phones: 1 column */
+      }
+    }
+
+    /* make it obvious that images are "pressable" */
+    .lesson-card {
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
-    <div id="nav-placeholder"></div>
-    <!-- The main content will start here, pushed down by the top padding on the body -->
-    <h1>Lessons Coming Soon!</h1>
-    <!-- More content can be added here -->
+  <div id="nav-placeholder"></div>
+  <!-- The main content will start here, pushed down by the top padding on the body -->
+  <h1>Lessons Coming Now!</h1>
+  <!-- More content can be added here -->
+  <div class="grid-3x3">
+    <!-- row 1 (3 cards) -->
+    <a href="#" class="lesson-card">
+      <img class="card-image" src="https://images.pexels.com/photos/6963120/pexels-photo-6963120.jpeg"
+        alt="to be loaded">
+      <span class="click-hint">press</span>
+      <div class="hover-details">
+        <span class="hover-title">Coming soon!</span>
+        <span class="hover-desc">Activity details</span>
+        <span class="hover-meta">details</span>
+      </div>
+    </a>
 
-    <script>
-        // Load the navigation bar using JavaScript
-        // need to change depending on if the user logged in or not!!!!
-        const loggedIn = false;
+    <a href="#" class="lesson-card">
+      <img class="card-image" src="https://images.pexels.com/photos/6963120/pexels-photo-6963120.jpeg"
+        alt="to be loaded">
+      <span class="click-hint">press</span>
+      <div class="hover-details">
+        <span class="hover-title">Coming soon!</span>
+        <span class="hover-desc">Activity details</span>
+        <span class="hover-meta">details</span>
+      </div>
+    </a>
 
-        const navFile = loggedIn ? 'after_header.html' : 'before_header.html';
+    <a href="#" class="lesson-card">
+      <img class="card-image" src="https://images.pexels.com/photos/6963120/pexels-photo-6963120.jpeg"
+        alt="to be loaded">
+      <span class="click-hint">press</span>
+      <div class="hover-details">
+        <span class="hover-title">Coming soon!</span>
+        <span class="hover-desc">Activity details</span>
+        <span class="hover-meta">details</span>
+      </div>
+    </a>
 
-        fetch(navFile)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error fetching navigation bar:', error);
-            });
-    </script>
+    <!-- row 2 (3 cards) -->
+    <a href="#" class="lesson-card">
+      <img class="card-image" src="https://images.pexels.com/photos/6963120/pexels-photo-6963120.jpeg"
+        alt="to be loaded">
+      <span class="click-hint">press</span>
+      <div class="hover-details">
+        <span class="hover-title">Coming soon!</span>
+        <span class="hover-desc">Activity details</span>
+        <span class="hover-meta">details</span>
+      </div>
+    </a>
+
+    <a href="#" class="lesson-card">
+      <img class="card-image" src="https://images.pexels.com/photos/6963120/pexels-photo-6963120.jpeg"
+        alt="to be loaded">
+      <span class="click-hint">press</span>
+      <div class="hover-details">
+        <span class="hover-title">Coming soon!</span>
+        <span class="hover-desc">Activity details</span>
+        <span class="hover-meta">details</span>
+      </div>
+    </a>
+
+    <a href="#" class="lesson-card">
+      <img class="card-image" src="https://images.pexels.com/photos/6963120/pexels-photo-6963120.jpeg"
+        alt="to be loaded">
+      <span class="click-hint">press</span>
+      <div class="hover-details">
+        <span class="hover-title">Coming soon!</span>
+        <span class="hover-desc">Activity details</span>
+        <span class="hover-meta">details</span>
+      </div>
+    </a>
+  </div>
+
+  <script>
+    // Load the navigation bar using JavaScript
+    // need to change depending on if the user logged in or not!!!!
+    const loggedIn = false;
+
+    const navFile = loggedIn ? 'after_header.html' : 'before_header.html';
+
+    fetch(navFile)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Error fetching navigation bar:', error);
+      });
+  </script>
 </body>
+
 </html>
